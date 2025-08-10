@@ -233,9 +233,12 @@
       const yearEl = $('#year');
       yearEl.textContent = new Date().getFullYear();
 
-      // Open modal on first visit (once)
+      // Key to store if user has selected a language
+      const LANG_KEY = 'language_chosen';
+
+      // Open modal on first visit (once) only after user has chosen a language
       const MODAL_KEY = 'jp_modal_dismissed_v1_en';
-      if(!localStorage.getItem(MODAL_KEY)){
+      if(localStorage.getItem(LANG_KEY) && !localStorage.getItem(MODAL_KEY)){
         modal.classList.add('open');
         modal.setAttribute('aria-hidden','false');
       }
@@ -269,6 +272,16 @@
       on(terms.querySelector('.close'), 'click', () => {
         terms.classList.remove('open');
         terms.setAttribute('aria-hidden','true');
+      });
+
+      // When the user clicks EN or NL in the nav, record their choice
+      document.querySelectorAll('nav a').forEach(a => {
+        on(a, 'click', () => {
+          const text = a.textContent.trim().toLowerCase();
+          if (text === 'en' || text === 'nl') {
+            localStorage.setItem(LANG_KEY, text);
+          }
+        });
       });
 
       // Lightbox for gallery images
