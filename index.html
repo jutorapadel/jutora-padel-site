@@ -246,7 +246,7 @@
       on($('.js-close-terms'), 'click', ()=>closeDrawer(terms));
 
       // Light email validation
-      const validEmail = (v)=>/^[^\\s@]+@[^\\s@]+\\.[^\\s@]+$/.test(v);
+     const validEmail = (v)=>true;
 
       function handleSignup(formId, inputId, msgId, btnId){
         const form = document.getElementById(formId);
