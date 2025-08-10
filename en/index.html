@@ -168,6 +168,16 @@
 </footer>
 </div>
 <!-- Sign-up modal (opens on first visit, dismissible) -->
+<div aria-hidden="true" class="modal" id="langModal">
+<div aria-labelledby="langTitle" aria-modal="true" class="box card shadow" role="dialog">
+<button aria-label="Close" class="close js-close-lang-modal">✕</button>
+<h3 class="title" id="langTitle">Choose your language</h3>
+<div class="cta">
+  <button id="chooseEN" type="button">English</button>
+  <button id="chooseNL" type="button">Dutch</button>
+</div>
+</div>
+</div>
 <div aria-hidden="true" class="modal" id="signupModal">
 <div aria-labelledby="mTitle" aria-modal="true" class="box card shadow" role="dialog">
 <button aria-label="Close" class="close js-close-modal">✕</button>
@@ -236,11 +246,30 @@
       // Key to store if user has selected a language
       const LANG_KEY = 'language_chosen';
 
-      // Open modal on first visit (once) only after user has chosen a language
+      // Elements for the language selection modal
+      const langModal = $('#langModal');
+      const chooseEN = $('#chooseEN');
+      const chooseNL = $('#chooseNL');
+      const closeLangModal = $('.js-close-lang-modal');
+
+      // Key for sign‑up modal dismissal
       const MODAL_KEY = 'jp_modal_dismissed_v1_en';
-      if(localStorage.getItem(LANG_KEY) && !localStorage.getItem(MODAL_KEY)){
-        modal.classList.add('open');
-        modal.setAttribute('aria-hidden','false');
+
+      // Helper to open the sign‑up modal if it hasn't been dismissed
+      const showSignupIfNeeded = () => {
+        if(!localStorage.getItem(MODAL_KEY)){
+          modal.classList.add('open');
+          modal.setAttribute('aria-hidden','false');
+        }
+      };
+
+      // Show the language modal if the user has not yet selected a language;
+      // otherwise show the sign‑up modal if it hasn't been dismissed yet.
+      if(!localStorage.getItem(LANG_KEY)){
+        langModal.classList.add('open');
+        langModal.setAttribute('aria-hidden','false');
+      } else {
+        showSignupIfNeeded();
       }
 
       // Close modal and remember
@@ -274,7 +303,27 @@
         terms.setAttribute('aria-hidden','true');
       });
 
-      // When the user clicks EN or NL in the nav, record their choice
+      // Handle language selection via the language modal
+      on(chooseEN, 'click', () => {
+        localStorage.setItem(LANG_KEY, 'en');
+        langModal.classList.remove('open');
+        langModal.setAttribute('aria-hidden','true');
+        // Already on English page; just open signup if needed
+        showSignupIfNeeded();
+      });
+      on(chooseNL, 'click', () => {
+        localStorage.setItem(LANG_KEY, 'nl');
+        langModal.classList.remove('open');
+        langModal.setAttribute('aria-hidden','true');
+        // Navigate back to the Dutch page
+        window.location.href = '../index.html';
+      });
+      on(closeLangModal, 'click', () => {
+        langModal.classList.remove('open');
+        langModal.setAttribute('aria-hidden','true');
+      });
+
+      // Retain ability to record language choice via nav links as a fallback
       document.querySelectorAll('nav a').forEach(a => {
         on(a, 'click', () => {
           const text = a.textContent.trim().toLowerCase();
