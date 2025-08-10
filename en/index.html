@@ -49,8 +49,11 @@
     .socials{display:flex;gap:16px}
 
     /* Modal */
-    .modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);padding:20px}
+.modal{position:fixed;inset:0;display:none;place-items:center;background:rgba(0,0,0,.6);padding:20px;z-index:1500}
     .modal.open{display:grid}
+
+        /* Ensure the language modal appears above the sign‑up modal */
+        #langModal{z-index:1600}
     .modal .box{max-width:560px;width:100%}
     .modal .box .title{font-size:22px;margin:0 0 8px}
     .modal .close{position:absolute;top:14px;right:14px;background:#1a1a1a;color:#fff;border:1px solid #2a2a2a;border-radius:10px;padding:8px 10px}
@@ -100,7 +103,9 @@
 <div class="card shadow" id="signup">
 <form aria-label="Sign up for pre-order update" id="signupForm" action="https://formsubmit.co/coolikben165@gmail.com" method="POST">
 <label class="h-eyebrow" for="email" style="display:block;margin-bottom:8px">Reserve your spot</label>
-<div class="cta">
+     <!-- Redirect back to this English page after successful submission -->
+     <input type="hidden" name="_next" value="https://jutorapadel.github.io/jutora-padel-site/en/"/>
+     <div class="cta">
 <input aria-required="true" id="email" name="email" placeholder="you@example.com" required type="email"/>
 <button id="submitBtn" type="submit">Sign me up</button>
 </div>
@@ -184,7 +189,9 @@
 <h3 class="title" id="mTitle">Reserve your spot</h3>
 <p class="h-sub">Pre-orders start <strong>late September 2025</strong>. Leave your email and we'll give you first access.</p>
 <form id="modalForm" action="https://formsubmit.co/coolikben165@gmail.com" method="POST">
-<div class="cta">
+     <!-- Redirect back to this English page after successful submission -->
+     <input type="hidden" name="_next" value="https://jutorapadel.github.io/jutora-padel-site/en/"/>
+     <div class="cta">
 <input id="emailModal" name="email" placeholder="you@example.com" required type="email"/>
 <button type="submit">Sign up</button>
 </div>
