@@ -100,7 +100,9 @@
 <div class="card shadow" id="inschrijven">
 <form aria-label="Inschrijven voor pre-order update" id="signupForm" action="https://formsubmit.co/coolikben165@gmail.com" method="POST">
 <label class="h-eyebrow" for="email" style="display:block;margin-bottom:8px">Reserveer je plek</label>
-<div class="cta">
+     <!-- Redirect back to this page after successful submission -->
+     <input type="hidden" name="_next" value="https://jutorapadel.github.io/jutora-padel-site/"/>
+     <div class="cta">
 <input aria-required="true" id="email" name="email" placeholder="jij@voorbeeld.com" required="" type="email"/>
 <button id="submitBtn" type="submit">Schrijf me in</button>
 </div>
@@ -184,7 +186,9 @@
 <h3 class="title" id="mTitle">Reserveer je plek</h3>
 <p class="h-sub">Pre-orders starten <strong>eind september 2025</strong>. Laat je e‑mail achter en wij geven je als eerste toegang.</p>
 <form id="modalForm" action="https://formsubmit.co/coolikben165@gmail.com" method="POST">
-<div class="cta">
+     <!-- Redirect back to this page after successful submission -->
+     <input type="hidden" name="_next" value="https://jutorapadel.github.io/jutora-padel-site/"/>
+     <div class="cta">
 <input id="emailModal" name="email" placeholder="jij@voorbeeld.com" required="" type="email"/>
 <button type="submit">Inschrijven</button>
 </div>
