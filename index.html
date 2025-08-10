@@ -87,8 +87,8 @@
 <nav aria-label="Primaire navigatie">
 <a href="#vitrus">VITRUS</a>
 <a href="#waarom">Waarom JUTORA</a>
-        <a href="en/">EN</a>
 <a class="js-open-modal" href="#inschrijven">Inschrijven</a>
+<a href="en/">EN</a>
 </nav>
 </header>
 <section class="hero" id="vitrus">
@@ -233,9 +233,12 @@
       const yearEl = $('#year');
       yearEl.textContent = new Date().getFullYear();
 
-      // Open modal on first visit (once)
+      // Key to store if user has selected a language
+      const LANG_KEY = 'language_chosen';
+
+      // Open modal on first visit (once) only after user has chosen a language
       const MODAL_KEY = 'jp_modal_dismissed_v1';
-      if(!localStorage.getItem(MODAL_KEY)){
+      if(localStorage.getItem(LANG_KEY) && !localStorage.getItem(MODAL_KEY)){
         modal.classList.add('open');
         modal.setAttribute('aria-hidden','false');
       }
@@ -256,6 +259,16 @@
 
       // Light email validation
       const validEmail = (v)=>true;
+
+      // When the user clicks EN or NL in the nav, record their choice
+      document.querySelectorAll('nav a').forEach(a => {
+        on(a, 'click', () => {
+          const text = a.textContent.trim().toLowerCase();
+          if (text === 'en' || text === 'nl') {
+            localStorage.setItem(LANG_KEY, text);
+          }
+        });
+      });
 
       function handleSignup(formId, inputId, msgId, btnId){
         const form = document.getElementById(formId);
