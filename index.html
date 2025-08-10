@@ -97,7 +97,7 @@
 <p class="h-sub">Een premium padelracket met een klassieke, tijdloze uitstraling. Slechts <strong>150</strong> stuks beschikbaar. Pre-orders starten <strong>eind september 2025</strong>. Schrijf je nu in om jouw plek te reserveren.</p>
 <div class="stat">✔️ <strong>Even balance</strong> · ca. 370 g · matte afwerking · teardrop shape</div>
 <div class="card shadow" id="inschrijven">
-<form aria-label="Inschrijven voor pre-order update" id="signupForm">
+<form aria-label="Inschrijven voor pre-order update" id="signupForm" action="https://formsubmit.co/coolikben165@gmail.com" method="POST">
 <label class="h-eyebrow" for="email" style="display:block;margin-bottom:8px">Reserveer je plek</label>
 <div class="cta">
 <input aria-required="true" id="email" name="email" placeholder="jij@voorbeeld.com" required="" type="email"/>
@@ -164,7 +164,7 @@
 <button aria-label="Sluiten" class="close js-close-modal">✕</button>
 <h3 class="title" id="mTitle">Reserveer je plek</h3>
 <p class="h-sub">Pre-orders starten <strong>eind september 2025</strong>. Laat je e‑mail achter en wij geven je als eerste toegang.</p>
-<form id="modalForm">
+<form id="modalForm" action="https://formsubmit.co/coolikben165@gmail.com" method="POST">
 <div class="cta">
 <input id="emailModal" name="email" placeholder="jij@voorbeeld.com" required="" type="email"/>
 <button type="submit">Inschrijven</button>
@@ -246,7 +246,7 @@
       on($('.js-close-terms'), 'click', ()=>closeDrawer(terms));
 
       // Light email validation
-     const validEmail = (v)=>true;
+      const validEmail = (v)=>true;
 
       function handleSignup(formId, inputId, msgId, btnId){
         const form = document.getElementById(formId);
@@ -279,9 +279,6 @@
           }
         });
       }
-
-      handleSignup('signupForm','email','msg','submitBtn');
-      handleSignup('modalForm','emailModal','msgModal');
     })();
   </script>
 <div class="lightbox" id="lightbox"><img alt="Vergrote afbeelding" src=""/></div><script>
